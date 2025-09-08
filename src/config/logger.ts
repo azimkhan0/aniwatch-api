@@ -1,5 +1,5 @@
 import { env } from "./env.js";
-import { pino, type LoggerOptions } from "pino";
+import pino, { type LoggerOptions } from "pino";
 
 const loggerOptions: LoggerOptions = {
     redact: env.isProduction ? ["hostname"] : [],
@@ -20,7 +20,8 @@ const loggerOptions: LoggerOptions = {
             };
         },
     },
-    timestamp: pino.stdTimeFunctions.isoTime,
+    // ✅ Replace stdTimeFunctions with manual ISO string
+    timestamp: () => `,"time":"${new Date().toISOString()}"`,
 };
 
 export const log = pino(loggerOptions);
