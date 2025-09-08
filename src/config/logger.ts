@@ -20,8 +20,8 @@ const loggerOptions: LoggerOptions = {
             };
         },
     },
-    // ✅ Replace stdTimeFunctions with manual ISO string
-    timestamp: () => `,"time":"${new Date().toISOString()}"`,
+    // Use pino.stdTimeFunctions.isoTime for ISO timestamps
+    timestamp: pino.stdTimeFunctions.isoTime,
 };
 
 export const log = pino(loggerOptions);
