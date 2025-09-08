@@ -4,6 +4,10 @@ import { log } from "../config/logger.js";
 
 export const logging: MiddlewareHandler = honoLogger(
     (msg: string, ...rest: string[]) => {
-        log.info(msg, ...rest);
+        // Option 1: Simple message logging
+        log.info(`${msg} ${rest.join(' ')}`);
+        
+        // Option 2: Structured logging (alternative)
+        // log.info({ message: msg, extra: rest });
     }
 );
